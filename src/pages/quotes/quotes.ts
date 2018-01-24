@@ -24,7 +24,7 @@ ngOnInit(){
       buttons: [
         {
           text: 'Yes',
-          handler: () => {
+          handler: () => { 
             console.log('yes');
           }
         },
