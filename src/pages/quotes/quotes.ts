@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, AlertController } from 'ionic-angular';
 import { Quote } from '../../data/quote.interface';
+import { quoteService } from '../../services/quote';
 
 @Component({
   selector: 'page-quotes',
@@ -8,7 +9,9 @@ import { Quote } from '../../data/quote.interface';
 })
 export class QuotesPage implements OnInit {
   quoteGroup: { category: string, quotes: Quote[], icon: string };
-  constructor(private navParams: NavParams, private alertCtrl: AlertController ){
+  constructor(private navParams: NavParams, 
+    private alertCtrl: AlertController,
+    private quoteService :quoteService ){
 }
 //Add elvis operator (?) in template to use this approach
 // ionViewDidLoad(){
@@ -17,7 +20,7 @@ export class QuotesPage implements OnInit {
 ngOnInit(){
   this.quoteGroup = this.navParams.data;
 }
-  onAddToFavorite(){
+  onAddToFavorite(quote:Quote){
     let prompt = this.alertCtrl.create({
       title: 'Add Quote',
       message: "Are you sure you want to add quote",
@@ -25,7 +28,7 @@ ngOnInit(){
         {
           text: 'Yes',
           handler: () => { 
-            console.log('yes');
+            this.quoteService.addQuoteToFavorites(quote);
           }
         },
         {
