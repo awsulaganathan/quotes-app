@@ -7,7 +7,7 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let quote of quotes">
+    <ion-item *ngFor="let quote of quotes" (click)="onViewQuote(quote)">
       <h2>{{quote.person}}</h2>
       <p>{{quote.text}}</p>
     </ion-item>
