@@ -18,14 +18,18 @@ constructor(private quoteServices : quoteService,
 ionViewWillEnter(){
   this.quotes = this.quoteServices.getFavoriteQuotes();
 }
-  //onRemoveFromFavorite(quote){
-    //console.log(quote);
-    //this.quoteServices.removeQuoteFromFavorites(quote);
-  //}
+  onRemoveFromFavorite(quote: Quote){
+    this.quoteServices.removeQuoteFromFavorites(quote);
+    this.quotes = this.quoteServices.getFavoriteQuotes();
+  }
 
   onViewQuote(quote: Quote){
     const modal = this.modalCtrl.create(QuotePage,quote);
     modal.present();
+    modal.onDidDismiss((remove:boolean) =>{
+      if (remove){
+        this.onRemoveFromFavorite(quote);
+      }
+    });
   }
-
 }

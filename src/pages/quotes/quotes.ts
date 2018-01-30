@@ -42,4 +42,10 @@ ngOnInit(){
     });
     prompt.present();
   }
+  onRemoveFromFavorite(quote:Quote){
+    this.quoteService.removeQuoteFromFavorites(quote);
+  }
+  isFavotire(quote:Quote){
+    return this.quoteService.isFavotire(quote);
+  }
 }

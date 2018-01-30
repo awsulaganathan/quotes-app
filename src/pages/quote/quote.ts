@@ -17,7 +17,7 @@ export class QuotePage {
     this.person = this.quote.person;
     this.text = this.quote.text;
   }
-  onClose(){
-  this.viewCtrl.dismiss();
+  onClose(remove=false){
+  this.viewCtrl.dismiss(remove);
   }
 }
